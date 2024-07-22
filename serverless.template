@@ -1,0 +1,57 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Description": "Rock Paper Scissors game using WebSockets",
+
+  "Resources": {
+    "RockPaperScissorsFunction": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "rps-api::rps_api.Function::FunctionHandler",
+        "Runtime": "dotnet8",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": ["AWSLambdaBasicExecutionRole", "AmazonDynamoDBFullAccess"],
+        "Events": {
+          "WebSocketConnect": {
+            "Type": "WebSocket",
+            "Properties": {
+              "Route": "$connect"
+            }
+          },
+          "WebSocketDisconnect": {
+            "Type": "WebSocket",
+            "Properties": {
+              "Route": "$disconnect"
+            }
+          },
+          "WebSocketDefault": {
+            "Type": "WebSocket",
+            "Properties": {
+              "Route": "$default"
+            }
+          }
+        }
+      }
+    },
+    "WebSocketApi": {
+      "Type": "AWS::ApiGatewayV2::Api",
+      "Properties": {
+        "Name": "RockPaperScissorsWebSocketApi",
+        "ProtocolType": "WEBSOCKET",
+        "RouteSelectionExpression": "$request.body.action"
+      }
+    }
+  },
+
+  "Outputs": {
+    "WebSocketURI": {
+      "Description": "The WSS Protocol URI to connect to",
+      "Value": {
+        "Fn::Sub": "wss://${WebSocketApi}.execute-api.${AWS::Region}.amazonaws.com/${WebSocketApi.Stage}"
+      }
+    }
+  }
+}
