@@ -22,24 +22,27 @@
         "Policies": ["AWSLambdaBasicExecutionRole", "AmazonDynamoDBFullAccess"],
         "Events": {
           "WebSocketConnect": {
-            "Type": "WebSocket",
+            "Type": "Api",
             "Properties": {
-              "ApiId": {"Ref": "WebSocketApi"},
-              "Route": "$connect"
+              "Path": "$connect",
+              "Method": "GET",
+              "RestApiId": {"Ref": "WebSocketApi"}
             }
           },
           "WebSocketDisconnect": {
-            "Type": "WebSocket",
+            "Type": "Api",
             "Properties": {
-              "ApiId": {"Ref": "WebSocketApi"},
-              "Route": "$disconnect"
+              "Path": "$disconnect",
+              "Method": "GET",
+              "RestApiId": {"Ref": "WebSocketApi"}
             }
           },
           "WebSocketDefault": {
-            "Type": "WebSocket",
+            "Type": "Api",
             "Properties": {
-              "ApiId": {"Ref": "WebSocketApi"},
-              "Route": "$default"
+              "Path": "$default",
+              "Method": "POST",
+              "RestApiId": {"Ref": "WebSocketApi"}
             }
           }
         }
