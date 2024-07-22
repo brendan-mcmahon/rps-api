@@ -24,18 +24,21 @@
           "WebSocketConnect": {
             "Type": "WebSocket",
             "Properties": {
+              "ApiId": {"Ref": "WebSocketApi"},
               "Route": "$connect"
             }
           },
           "WebSocketDisconnect": {
             "Type": "WebSocket",
             "Properties": {
+              "ApiId": {"Ref": "WebSocketApi"},
               "Route": "$disconnect"
             }
           },
           "WebSocketDefault": {
             "Type": "WebSocket",
             "Properties": {
+              "ApiId": {"Ref": "WebSocketApi"},
               "Route": "$default"
             }
           }
@@ -43,9 +46,10 @@
       }
     },
     "WebSocketApi": {
-      "Type": "AWS::ApiGatewayV2::Api",
+      "Type": "AWS::Serverless::Api",
       "Properties": {
         "Name": "RockPaperScissorsWebSocketApi",
+        "StageName": "Prod",
         "ProtocolType": "WEBSOCKET",
         "RouteSelectionExpression": "$request.body.action"
       }
@@ -56,7 +60,7 @@
     "WebSocketURI": {
       "Description": "The WSS Protocol URI to connect to",
       "Value": {
-        "Fn::Sub": "wss://${WebSocketApi}.execute-api.${AWS::Region}.amazonaws.com/${WebSocketApi.Stage}"
+        "Fn::Sub": "wss://${WebSocketApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
       }
     }
   }
