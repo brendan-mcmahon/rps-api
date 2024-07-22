@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9A134C71-16DB-4E48-9B54-883EEB79263F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rps-api", "src\rps-api\rps-api.csproj", "{46B58344-21ED-4C0C-9E76-A61BEE436BA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9E48429D-E892-4D1B-8040-56F948F23A77}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rps-api.Tests", "test\rps-api.Tests\rps-api.Tests.csproj", "{4971B37E-AB5E-422D-9384-C5B9A3A4FD70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46B58344-21ED-4C0C-9E76-A61BEE436BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B58344-21ED-4C0C-9E76-A61BEE436BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46B58344-21ED-4C0C-9E76-A61BEE436BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B58344-21ED-4C0C-9E76-A61BEE436BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4971B37E-AB5E-422D-9384-C5B9A3A4FD70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4971B37E-AB5E-422D-9384-C5B9A3A4FD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4971B37E-AB5E-422D-9384-C5B9A3A4FD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4971B37E-AB5E-422D-9384-C5B9A3A4FD70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{46B58344-21ED-4C0C-9E76-A61BEE436BA1} = {9A134C71-16DB-4E48-9B54-883EEB79263F}
+		{4971B37E-AB5E-422D-9384-C5B9A3A4FD70} = {9E48429D-E892-4D1B-8040-56F948F23A77}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6258EDD-BE5F-40C8-A5BC-99540685C717}
+	EndGlobalSection
+EndGlobal
