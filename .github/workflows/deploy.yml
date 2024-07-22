@@ -33,5 +33,5 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: "us-east-2"
       run: |
-        cd rps-api  # Replace with your actual project directory
+        cd src/rps-api
         dotnet lambda deploy-serverless
