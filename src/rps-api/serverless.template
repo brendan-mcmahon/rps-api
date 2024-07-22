@@ -15,41 +15,58 @@
       "Properties": {
         "Handler": "rps-api::rps_api.Function::FunctionHandler",
         "Runtime": "dotnet8",
-        "CodeUri": "",
         "MemorySize": 256,
         "Timeout": 30,
-        "Role": null,
-        "Policies": ["AWSLambdaBasicExecutionRole", "AmazonDynamoDBFullAccess"],
         "Events": {
           "WebSocketConnect": {
-            "Type": "WebSocket",
+            "Type": "AWS::ApiGatewayV2::Route",
             "Properties": {
               "ApiId": {"Ref": "WebSocketApi"},
-              "Route": "$connect"
+              "RouteKey": "$connect",
+              "AuthorizationType": "NONE",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  ["integrations", {"Ref": "WebSocketConnectIntegration"}]
+                ]
+              }
             }
           },
           "WebSocketDisconnect": {
-            "Type": "WebSocket",
+            "Type": "AWS::ApiGatewayV2::Route",
             "Properties": {
               "ApiId": {"Ref": "WebSocketApi"},
-              "Route": "$disconnect"
+              "RouteKey": "$disconnect",
+              "AuthorizationType": "NONE",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  ["integrations", {"Ref": "WebSocketDisconnectIntegration"}]
+                ]
+              }
             }
           },
           "WebSocketDefault": {
-            "Type": "WebSocket",
+            "Type": "AWS::ApiGatewayV2::Route",
             "Properties": {
               "ApiId": {"Ref": "WebSocketApi"},
-              "Route": "$default"
+              "RouteKey": "$default",
+              "AuthorizationType": "NONE",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  ["integrations", {"Ref": "WebSocketDefaultIntegration"}]
+                ]
+              }
             }
           }
         }
       }
     },
     "WebSocketApi": {
-      "Type": "AWS::Serverless::Api",
+      "Type": "AWS::ApiGatewayV2::Api",
       "Properties": {
         "Name": "RockPaperScissorsWebSocketApi",
-        "StageName": "Prod",
         "ProtocolType": "WEBSOCKET",
         "RouteSelectionExpression": "$request.body.action"
       }
