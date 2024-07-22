@@ -41,4 +41,5 @@ jobs:
     - name: Deploy to Lambda
       run: |
         cd src/rps-api
-        dotnet lambda deploy-serverless --s3-bucket rps-api-deployment-bucket
+        dotnet lambda deploy-serverless --s3-bucket rps-api-deployment-bucket --stack-name rps-api-stack
+      
