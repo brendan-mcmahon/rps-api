@@ -4,12 +4,6 @@
   "Description": "Rock Paper Scissors game using WebSockets",
 
   "Resources": {
-    "DeploymentBucket": {
-      "Type": "AWS::S3::Bucket",
-      "Properties": {
-        "BucketName": "rps-api-deployment-bucket"
-      }
-    },
     "RockPaperScissorsFunction": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
