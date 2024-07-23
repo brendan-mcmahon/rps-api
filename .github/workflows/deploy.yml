@@ -41,12 +41,5 @@ jobs:
     - name: Deploy to Lambda
       run: |
         cd src/rps-api
-        dotnet lambda deploy-serverless --s3-bucket rps-api-deployment-bucket --stack-name rps-api-stack --force-upload --disable-version-check --capabilities CAPABILITY_IAM
-      continue-on-error: true
+        dotnet lambda deploy-serverless --s3-bucket rps-api-deployment-bucket --stack-name rps-api-stack
       
-    - name: Check deployment status
-      if: ${{ failure() }}
-      run: |
-        echo "Deployment failed. Checking CloudFormation events..."
-        aws cloudformation describe-stack-events --stack-name rps-api-stack --query 'StackEvents[?ResourceStatus==`CREATE_FAILED`].[LogicalResourceId,ResourceStatusReason]' --output table
-        exit 1
