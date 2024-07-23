@@ -9,31 +9,33 @@
       "Properties": {
         "Handler": "rps-api::rps_api.Function::FunctionHandler",
         "Runtime": "dotnet8",
-        "CodeUri": "",
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
         "Policies": ["AWSLambdaBasicExecutionRole", "AmazonDynamoDBFullAccess"],
         "Events": {
           "WebSocketConnect": {
-            "Type": "WebSocket",
+            "Type": "Api",
             "Properties": {
-              "Route": "$connect",
-              "ApiId": {"Ref": "WebSocketApi"}
+              "Path": "$connect",
+              "Method": "GET",
+              "RestApiId": {"Ref": "WebSocketApi"}
             }
           },
           "WebSocketDisconnect": {
-            "Type": "WebSocket",
+            "Type": "Api",
             "Properties": {
-              "Route": "$disconnect",
-              "ApiId": {"Ref": "WebSocketApi"}
+              "Path": "$disconnect",
+              "Method": "GET",
+              "RestApiId": {"Ref": "WebSocketApi"}
             }
           },
           "WebSocketDefault": {
-            "Type": "WebSocket",
+            "Type": "Api",
             "Properties": {
-              "Route": "$default",
-              "ApiId": {"Ref": "WebSocketApi"}
+              "Path": "$default",
+              "Method": "POST",
+              "RestApiId": {"Ref": "WebSocketApi"}
             }
           }
         }
